@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.util.Assert;
 
 import java.util.UUID;
 
@@ -36,11 +36,22 @@ public class UserServiceTest {
 
     @BeforeEach
     public void setup() {
+        User user = new User();
+        user.setNickname("romanP4ladin");
+        Mockito.when(this.repo.findByNickName(user.getNickname()))
+                .thenReturn(user);
+
+        User user1 = new User();
+        user1.setId(UUID.randomUUID());
+        user1.setNickname("darkS0ldi3r");
+        user1.setTitle("King of Wessex");
+        Mockito.when(this.repo.save(Mockito.any(User.class)))
+                .thenAnswer(i -> i.getArguments()[0]);
     }
 
     @Test
     void whenNicknameExists_mustFindUser() {
-        String nickname = "coolnam3";
+        String nickname = "romanP4ladin";
         User user = this.service.findByNickname(nickname);
         Assertions.assertEquals(nickname, user.getNickname());
     }
@@ -53,7 +64,7 @@ public class UserServiceTest {
         user.setTitle("King of Wessex");
 
         User insert = this.service.insert(user);
-        Assertions.assertEquals(user.getClass(), insert.getClass());
+        Assertions.assertEquals(user.getNickname(), insert.getNickname());
     }
 
     @Test
