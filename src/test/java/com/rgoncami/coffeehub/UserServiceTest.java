@@ -46,7 +46,7 @@ public class UserServiceTest {
         user1.setNickname("darkS0ldi3r");
         user1.setTitle("King of Wessex");
         Mockito.when(this.repo.save(Mockito.any(User.class)))
-                .thenAnswer(i -> i.getArguments()[0]);
+                .thenReturn(user1);
     }
 
     @Test
