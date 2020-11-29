@@ -9,19 +9,19 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(SpringExtension.class)
 class UserTest {
 
-    User valid, invalid;
+    private User valid, invalid;
 
     @BeforeEach
     public void setup() {
+        valid = new User();
         valid.setId(UUID.randomUUID());
         valid.setNickname("FranzK4fk4");
         valid.setTitle("Knight");
 
+        invalid = new User();
         invalid.setId(UUID.randomUUID());
         invalid.setNickname("ThisNicknameIsTooooooLong");
         invalid.setTitle(null);

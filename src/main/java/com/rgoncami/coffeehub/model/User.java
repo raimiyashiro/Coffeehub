@@ -42,4 +42,19 @@ public class User {
     @JsonManagedReference
     private Set<Message> messages;
 
+    public boolean isValid() {
+        return this.hasValidNickName() &&
+                this.hasValidTitle();
+    }
+
+    private boolean hasValidTitle() {
+        return this.getTitle() != null &&
+                this.getTitle().length() > 0 && this.getTitle().length() <= 50;
+    }
+
+    public boolean hasValidNickName() {
+        return this.getNickname() != null &&
+                this.getNickname().length() > 0 && this.getNickname().length() <= 20;
+    }
+
 }
