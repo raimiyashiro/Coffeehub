@@ -38,7 +38,7 @@ public class UserServiceTest {
     public void setup() {
         User user = new User();
         user.setNickname("romanP4ladin");
-        Mockito.when(this.repo.findByNickName(user.getNickname()))
+        Mockito.when(this.repo.findByNickname(user.getNickname()))
                 .thenReturn(user);
 
         User user1 = new User();

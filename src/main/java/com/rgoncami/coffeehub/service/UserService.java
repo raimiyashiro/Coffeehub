@@ -13,7 +13,7 @@ public class UserService {
     private UserRepository repo;
 
     public User findByNickname(String nickname) {
-        return this.repo.findByNickName(nickname);
+        return this.repo.findByNickname(nickname);
     }
 
     public User insert(User user) {
