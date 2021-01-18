@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class ExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = {UserCreationException.class})
     public ResponseEntity<ApiException> handleUserCreationException(
             UserCreationException e) {
 
