@@ -1,9 +1,10 @@
 package com.rgoncami.coffeehub.service;
 
+import com.rgoncami.coffeehub.exception.enums.UserError;
+import com.rgoncami.coffeehub.exception.exceptions.UserCreationException;
 import com.rgoncami.coffeehub.model.User;
 import com.rgoncami.coffeehub.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,8 @@ public class UserService {
         if (this.findByNickname(user.getNickname()) == null) {
             return this.repo.save(user);
         }
-        throw new DuplicateKeyException("The given nickname already exists, pick another one");
+
+        throw new UserCreationException(
+                UserError.USER_NICKNAME_ALREADY_EXISTS);
     }
 }
