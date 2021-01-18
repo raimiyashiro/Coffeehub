@@ -1,5 +1,6 @@
 package com.rgoncami.coffeehub;
 
+import com.rgoncami.coffeehub.exception.exceptions.RoomCreationException;
 import com.rgoncami.coffeehub.model.Room;
 import com.rgoncami.coffeehub.repo.RoomRepository;
 import com.rgoncami.coffeehub.service.RoomService;
@@ -62,7 +63,7 @@ public class RoomServiceTest {
         room.setId(UUID.randomUUID());
         room.setName("The Golden Hall");
 
-        Assertions.assertThrows(DuplicateKeyException.class, () -> {
+        Assertions.assertThrows(RoomCreationException.class, () -> {
             this.service.insert(room);
         });
     }

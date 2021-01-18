@@ -1,5 +1,7 @@
 package com.rgoncami.coffeehub.service;
 
+import com.rgoncami.coffeehub.exception.enums.RoomError;
+import com.rgoncami.coffeehub.exception.exceptions.RoomCreationException;
 import com.rgoncami.coffeehub.model.Room;
 import com.rgoncami.coffeehub.repo.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,6 @@ public class RoomService {
         if (this.findByName(room.getName()) == null) {
             return this.repo.save(room);
         }
-        throw new DuplicateKeyException("There is already a Room with name: " + room.getName());
+        throw new RoomCreationException(RoomError.ROOM_NAME_IS_UNAVAILABLE);
     }
 }
