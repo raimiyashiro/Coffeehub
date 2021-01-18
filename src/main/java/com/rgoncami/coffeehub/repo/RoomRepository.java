@@ -1,4 +1,4 @@
-package com.rgoncami.coffeehub.service;
+package com.rgoncami.coffeehub.repo;
 
 import com.rgoncami.coffeehub.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;

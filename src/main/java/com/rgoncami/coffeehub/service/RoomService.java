@@ -1,6 +1,7 @@
 package com.rgoncami.coffeehub.service;
 
 import com.rgoncami.coffeehub.model.Room;
+import com.rgoncami.coffeehub.repo.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;

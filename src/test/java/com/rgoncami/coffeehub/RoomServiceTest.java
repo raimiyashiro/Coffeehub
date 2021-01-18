@@ -1,7 +1,7 @@
 package com.rgoncami.coffeehub;
 
 import com.rgoncami.coffeehub.model.Room;
-import com.rgoncami.coffeehub.service.RoomRepository;
+import com.rgoncami.coffeehub.repo.RoomRepository;
 import com.rgoncami.coffeehub.service.RoomService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
