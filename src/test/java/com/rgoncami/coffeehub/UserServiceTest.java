@@ -1,5 +1,6 @@
 package com.rgoncami.coffeehub;
 
+import com.rgoncami.coffeehub.exception.exceptions.UserCreationException;
 import com.rgoncami.coffeehub.model.User;
 import com.rgoncami.coffeehub.repo.UserRepository;
 import com.rgoncami.coffeehub.service.UserService;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.UUID;
@@ -68,13 +68,13 @@ public class UserServiceTest {
     }
 
     @Test
-    void whenNickNameExists_mustNotInsert() {
+    void whenNickNameExists_shouldThrowException() {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setNickname("romanP4ladin");
         user.setTitle("Roman Noble");
 
-        Assertions.assertThrows(DuplicateKeyException.class, () -> {
+        Assertions.assertThrows(UserCreationException.class, () -> {
             this.service.insert(user);
         });
 
