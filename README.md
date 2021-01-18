@@ -5,7 +5,10 @@
 ...
 
 ## Current ER Diagram
-![alt text](https://raw.githubusercontent.com/raimiyashiro/Coffeehub/master/schema.png)
+![alt text](https://raw.githubusercontent.com/raimiyashiro/Coffeehub/master/schemas/schema_0001.png)
+
+## API Reference
+...
 
 ## You may find this useful
 ...
