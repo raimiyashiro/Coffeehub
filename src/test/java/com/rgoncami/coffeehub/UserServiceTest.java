@@ -1,6 +1,7 @@
 package com.rgoncami.coffeehub;
 
 import com.rgoncami.coffeehub.exception.exceptions.UserCreationException;
+import com.rgoncami.coffeehub.exception.exceptions.UserNotFoundException;
 import com.rgoncami.coffeehub.model.User;
 import com.rgoncami.coffeehub.repo.UserRepository;
 import com.rgoncami.coffeehub.service.UserService;
