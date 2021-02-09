@@ -2,6 +2,7 @@ package com.rgoncami.coffeehub.service;
 
 import com.rgoncami.coffeehub.exception.enums.UserError;
 import com.rgoncami.coffeehub.exception.exceptions.UserCreationException;
+import com.rgoncami.coffeehub.exception.exceptions.UserNotFoundException;
 import com.rgoncami.coffeehub.model.User;
 import com.rgoncami.coffeehub.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,13 @@ public class UserService {
     private UserRepository repo;
 
     public User findByNickname(String nickname) {
-        return this.repo.findByNickname(nickname);
+        User user = this.repo.findByNickname(nickname);
+
+        if (user != null) {
+            return user;
+        }
+
+        throw new UserNotFoundException(UserError.USER_DOES_NOT_EXIST);
     }
 
     public User insert(User user) {

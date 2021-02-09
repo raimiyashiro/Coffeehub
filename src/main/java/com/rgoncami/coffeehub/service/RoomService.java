@@ -2,6 +2,7 @@ package com.rgoncami.coffeehub.service;
 
 import com.rgoncami.coffeehub.exception.enums.RoomError;
 import com.rgoncami.coffeehub.exception.exceptions.RoomCreationException;
+import com.rgoncami.coffeehub.exception.exceptions.RoomNotFoundException;
 import com.rgoncami.coffeehub.model.Room;
 import com.rgoncami.coffeehub.repo.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,13 @@ public class RoomService {
     private RoomRepository repo;
 
     public Room findByName(String name) {
-        return this.repo.findByName(name);
+        Room room = this.repo.findByName(name);
+
+        if (room != null) {
+            return room;
+        }
+
+        throw new RoomNotFoundException(RoomError.ROOM_DOES_NOT_EXIST);
     }
 
     public Room insert(Room room) {
