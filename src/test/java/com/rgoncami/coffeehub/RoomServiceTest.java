@@ -50,7 +50,7 @@ public class RoomServiceTest {
     }
 
     @Test
-    void whenRoomExists_mustReturnRoom() {
+    void shouldReturnRoom_whenRoomExists() {
         String name = "The Golden Hall";
         Room room = this.service.findByName(name);
 
@@ -58,7 +58,7 @@ public class RoomServiceTest {
     }
 
     @Test
-    void whenRoomExists_ShouldNotInsert() {
+    void shouldNotInsert_whenRoomExists() {
         Room room = new Room();
         room.setId(UUID.randomUUID());
         room.setName("The Golden Hall");
@@ -69,7 +69,7 @@ public class RoomServiceTest {
     }
 
     @Test
-    void whenRoomDoesNotExist_ShouldInsert() {
+    void shouldInsert_whenRoomDoesNotExist() {
         Room room = new Room();
         room.setId(UUID.randomUUID());
         room.setName("A new Room");

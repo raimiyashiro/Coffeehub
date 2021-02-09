@@ -50,14 +50,14 @@ public class UserServiceTest {
     }
 
     @Test
-    void whenNicknameExists_mustFindUser() {
+    void shouldReturnUser_whenNicknameExists() {
         String nickname = "romanP4ladin";
         User user = this.service.findByNickname(nickname);
         Assertions.assertEquals(nickname, user.getNickname());
     }
 
     @Test
-    void whenNicknameDoesNotExist_mustInsertUser() {
+    void shouldInsertUser_whenNicknameDoesNotExist() {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setNickname("darkS0ldi3r");
@@ -68,7 +68,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void whenNickNameExists_shouldThrowException() {
+    void shouldThrowException_whenNickNameExists() {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setNickname("romanP4ladin");
