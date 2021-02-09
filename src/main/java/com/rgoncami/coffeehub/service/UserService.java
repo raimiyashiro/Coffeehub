@@ -25,7 +25,13 @@ public class UserService {
     }
 
     public User insert(User user) {
-        if (this.findByNickname(user.getNickname()) == null) {
+        User find = null;
+        try {
+            find = this.findByNickname(user.getNickname());
+        } catch (UserNotFoundException e) {
+        }
+
+        if (find == null) {
             return this.repo.save(user);
         }
 

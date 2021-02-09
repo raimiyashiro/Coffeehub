@@ -26,9 +26,16 @@ public class RoomService {
     }
 
     public Room insert(Room room) {
-        if (this.findByName(room.getName()) == null) {
+        Room find = null;
+        try {
+            find = this.findByName(room.getName());
+        } catch (RoomNotFoundException e) {
+        }
+
+        if (find == null) {
             return this.repo.save(room);
         }
+
         throw new RoomCreationException(RoomError.ROOM_NAME_IS_UNAVAILABLE);
     }
 }
