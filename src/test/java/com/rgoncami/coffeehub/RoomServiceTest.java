@@ -58,6 +58,13 @@ public class RoomServiceTest {
     }
 
     @Test
+    void shouldThrowException_whenRoomIsNotFOund() {
+        Assertions.assertThrows(RoomNotFoundException.class, () -> {
+            this.service.findByName("Heorot");
+        });
+    }
+
+    @Test
     void shouldNotInsert_whenRoomExists() {
         Room room = new Room();
         room.setId(UUID.randomUUID());

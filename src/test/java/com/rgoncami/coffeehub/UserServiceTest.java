@@ -57,6 +57,13 @@ public class UserServiceTest {
     }
 
     @Test
+    void shouldThrowException_whenUserIsNotFound() {
+        Assertions.assertThrows(UserNotFoundException.class, () -> {
+            this.service.findByNickname("romanN0bl3");
+        });
+    }
+
+    @Test
     void shouldInsertUser_whenNicknameDoesNotExist() {
         User user = new User();
         user.setId(UUID.randomUUID());
