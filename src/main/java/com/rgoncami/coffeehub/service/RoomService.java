@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class RoomService {
 
@@ -33,6 +35,7 @@ public class RoomService {
         }
 
         if (find == null) {
+            room.setId(UUID.randomUUID());
             return this.repo.save(room);
         }
 

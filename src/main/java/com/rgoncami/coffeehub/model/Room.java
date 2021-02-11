@@ -32,6 +32,6 @@ public class Room {
     public Set<User> owners;
 
     @OneToMany(mappedBy = "room")
-    @JsonManagedReference
+    @JsonManagedReference(value = "room-messages")
     private Set<Message> messages;
 }

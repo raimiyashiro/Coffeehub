@@ -29,6 +29,6 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "room_id")
-    @JsonBackReference
+    @JsonBackReference(value = "room-messages")
     private Room room;
 }
