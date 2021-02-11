@@ -1,5 +1,6 @@
 package com.rgoncami.coffeehub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class User {
     private String title;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "user_rooms", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private Set<Room> rooms;
@@ -34,6 +36,7 @@ public class User {
     private Set<Room> likedRooms;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "room_owners", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private Set<Room> ownedRooms;

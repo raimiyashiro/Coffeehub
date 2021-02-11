@@ -28,7 +28,7 @@ public class Room {
     @ManyToMany(mappedBy = "likedRooms")
     public Set<User> likes;
 
-    @ManyToMany(mappedBy = "ownedRooms")
+    @ManyToMany(mappedBy = "ownedRooms", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     public Set<User> owners;
 
     @OneToMany(mappedBy = "room")
