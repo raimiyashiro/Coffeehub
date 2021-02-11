@@ -1,7 +1,9 @@
 package com.rgoncami.coffeehub.exception;
 
 import com.rgoncami.coffeehub.exception.exceptions.RoomCreationException;
+import com.rgoncami.coffeehub.exception.exceptions.RoomNotFoundException;
 import com.rgoncami.coffeehub.exception.exceptions.UserCreationException;
+import com.rgoncami.coffeehub.exception.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,5 +37,31 @@ public class ExceptionHandler {
         );
 
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<ApiException> handleUserNotFoundException(
+            UserNotFoundException e
+    ) {
+        ApiException apiException = new ApiException(
+                e.getCode(),
+                e.getMessage(),
+                ZonedDateTime.now()
+        );
+
+        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = {RoomNotFoundException.class})
+    public ResponseEntity<ApiException> handleRoomNotFoundException(
+            RoomNotFoundException e
+    ) {
+        ApiException apiException = new ApiException(
+                e.getCode(),
+                e.getMessage(),
+                ZonedDateTime.now()
+        );
+
+        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
 }
