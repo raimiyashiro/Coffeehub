@@ -39,7 +39,7 @@ public class User {
     private Set<Room> ownedRooms;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-messages")
     private Set<Message> messages;
 
     public boolean isValid() {

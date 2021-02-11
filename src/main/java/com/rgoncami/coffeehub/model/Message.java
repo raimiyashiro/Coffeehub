@@ -24,7 +24,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonBackReference(value = "user-messages")
     private User user;
 
     @ManyToOne
