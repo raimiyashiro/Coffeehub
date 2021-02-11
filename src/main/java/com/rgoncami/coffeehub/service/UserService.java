@@ -8,6 +8,8 @@ import com.rgoncami.coffeehub.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -32,6 +34,7 @@ public class UserService {
         }
 
         if (find == null) {
+            user.setId(UUID.randomUUID());
             return this.repo.save(user);
         }
 
