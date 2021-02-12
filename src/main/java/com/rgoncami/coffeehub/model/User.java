@@ -1,10 +1,7 @@
 package com.rgoncami.coffeehub.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -24,23 +21,28 @@ public class User {
     @Column(precision = 50, nullable = false)
     private String title;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
-    @JsonIgnore
     @JoinTable(name = "user_rooms", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private Set<Room> rooms;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(name = "room_likes", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private Set<Room> likedRooms;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
-    @JsonIgnore
     @JoinTable(name = "room_owners", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private Set<Room> ownedRooms;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "user")
     @JsonManagedReference(value = "user-messages")
     private Set<Message> messages;

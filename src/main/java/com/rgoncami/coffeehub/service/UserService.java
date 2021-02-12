@@ -35,7 +35,9 @@ public class UserService {
 
         if (find == null) {
             user.setId(UUID.randomUUID());
-            return this.repo.save(user);
+            User result = this.repo.save(user);
+
+            return result;
         }
 
         throw new UserCreationException(
