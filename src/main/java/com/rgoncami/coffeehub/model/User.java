@@ -1,51 +1,33 @@
 package com.rgoncami.coffeehub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "cafe_user")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
 
     @Id
     private UUID id;
+
     @Column(precision = 20, nullable = false, unique = true)
     private String nickname;
+
     @Column(precision = 50, nullable = false)
     private String title;
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @ManyToMany
-    @JoinTable(name = "user_rooms", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private Set<Room> rooms;
+    @JsonIgnoreProperties("users")
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Room> rooms = new HashSet<>();
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @ManyToMany
-    @JoinTable(name = "room_likes", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private Set<Room> likedRooms;
-
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @ManyToMany
-    @JoinTable(name = "room_owners", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private Set<Room> ownedRooms;
-
-    @ToString.Exclude
     @OneToMany(mappedBy = "user")
     @JsonManagedReference(value = "user-messages")
-    private Set<Message> messages;
+    private Set<Message> messages = new HashSet<>();
 
     public boolean isValid() {
         return this.hasValidNickName() &&
@@ -62,4 +44,54 @@ public class User {
                 this.getNickname().length() > 0 && this.getNickname().length() <= 20;
     }
 
+    public User() {
+    }
+
+    public User(UUID id, String nickname, String title, Set<Room> rooms, Set<Message> messages) {
+        this.id = id;
+        this.nickname = nickname;
+        this.title = title;
+        this.rooms = rooms;
+        this.messages = messages;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
 }
