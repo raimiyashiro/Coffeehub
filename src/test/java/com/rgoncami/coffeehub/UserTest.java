@@ -29,13 +29,13 @@ class UserTest {
 
     @Test
     void whenUserIsValid_shouldReturnTrue() {
-        boolean isValid = valid.isValid();
+        boolean isValid = valid.validate();
         Assertions.assertEquals(true, isValid);
     }
 
     @Test
     void whenUserIsInvalid_shouldReturnFalse() {
-        boolean isInvalid = invalid.isValid();
-        Assertions.assertEquals(false, invalid.isValid());
+        boolean isInvalid = invalid.validate();
+        Assertions.assertEquals(false, invalid.validate());
     }
 }

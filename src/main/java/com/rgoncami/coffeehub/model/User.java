@@ -37,7 +37,7 @@ public class User {
     @ToString.Exclude @EqualsAndHashCode.Exclude
     private Set<Message> messages = new HashSet<>();
 
-    public boolean isValid() {
+    public boolean validate() {
         return this.hasValidNickName() &&
                 this.hasValidTitle();
     }
