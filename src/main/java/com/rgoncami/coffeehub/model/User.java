@@ -25,13 +25,14 @@ public class User {
     @Column(precision = 50, nullable = false)
     private String title;
 
-    @JsonIgnoreProperties("users")
+    @JsonIgnoreProperties(value = {"users", "messages"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_rooms", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     @ToString.Exclude @EqualsAndHashCode.Exclude
     private Set<Room> rooms = new HashSet<>();
 
+    @JsonIgnoreProperties("user")
     @OneToMany(mappedBy = "user")
     @JsonManagedReference(value = "user-messages")
     @ToString.Exclude @EqualsAndHashCode.Exclude
