@@ -5,6 +5,8 @@ import com.rgoncami.coffeehub.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class RoomResource extends BaseResource {
 
@@ -12,8 +14,8 @@ public class RoomResource extends BaseResource {
     RoomService roomService;
 
     @GetMapping("/rooms")
-    public void list() {
-
+    public List<Room> list() {
+        return this.roomService.list();
     }
 
     @GetMapping("/rooms/{name}")

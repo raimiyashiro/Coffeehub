@@ -5,6 +5,8 @@ import com.rgoncami.coffeehub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class UserResource extends BaseResource {
 
@@ -12,8 +14,8 @@ public class UserResource extends BaseResource {
     UserService userService;
 
     @GetMapping("/users")
-    public void list() {
-
+    public List<User> list() {
+        return this.userService.list();
     }
 
     @GetMapping("/users/{nickname}")

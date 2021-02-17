@@ -8,6 +8,7 @@ import com.rgoncami.coffeehub.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -42,5 +43,9 @@ public class UserService {
 
         throw new UserCreationException(
                 UserError.USER_NICKNAME_ALREADY_EXISTS);
+    }
+
+    public List<User> list() {
+        return this.repo.findAll();
     }
 }
