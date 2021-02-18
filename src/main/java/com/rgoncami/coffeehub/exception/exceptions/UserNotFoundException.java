@@ -6,7 +6,7 @@ import lombok.Getter;
 public class UserNotFoundException extends RuntimeException {
 
     @Getter
-    private String code;
+    private final String code;
 
     public UserNotFoundException(UserError e) {
         super(e.getMessage());

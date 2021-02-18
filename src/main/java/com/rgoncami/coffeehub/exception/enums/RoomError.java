@@ -11,9 +11,10 @@ public enum RoomError {
             "Could not find a room for the given name.");
 
     @Getter
-    private String code;
+    private final String code;
+
     @Getter
-    private String message;
+    private final String message;
 
     RoomError(String code, String message) {
         this.code = code;

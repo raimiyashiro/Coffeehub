@@ -6,7 +6,7 @@ import lombok.Getter;
 public class RoomCreationException extends RuntimeException {
 
     @Getter
-    private String code;
+    private final String code;
 
     public RoomCreationException(RoomError e) {
         super(e.getMessage());

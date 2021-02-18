@@ -11,9 +11,10 @@ public enum UserError {
             "Could not find a User for the given nickname.");
 
     @Getter
-    private String code;
+    private final String code;
+
     @Getter
-    private String message;
+    private final String message;
 
     UserError(String code, String message) {
         this.code = code;
