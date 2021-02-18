@@ -6,7 +6,7 @@ import lombok.Getter;
 public class UserCreationException extends RuntimeException {
 
     @Getter
-    private String code;
+    private final String code;
 
     public UserCreationException(UserError u) {
         super(u.getMessage());

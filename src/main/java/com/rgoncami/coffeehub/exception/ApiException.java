@@ -1,11 +1,13 @@
 package com.rgoncami.coffeehub.exception;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.ZonedDateTime;
 
 @Data
+@Builder
 @AllArgsConstructor
 public class ApiException {
 

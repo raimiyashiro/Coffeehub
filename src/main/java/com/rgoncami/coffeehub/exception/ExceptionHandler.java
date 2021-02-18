@@ -14,53 +14,45 @@ import java.time.ZonedDateTime;
 public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {UserCreationException.class})
-    public ResponseEntity<ApiException> handleUserCreationException(
-            UserCreationException e) {
-
-        ApiException apiException = new ApiException(
-                e.getCode(),
-                e.getMessage(),
-                ZonedDateTime.now()
-        );
+    public ResponseEntity<ApiException> handleUserCreationException(UserCreationException e) {
+        ApiException apiException = ApiException.builder()
+                .code(e.getCode())
+                .message(e.getMessage())
+                .zonedDateTime(ZonedDateTime.now())
+                .build();
 
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {RoomCreationException.class})
-    public ResponseEntity<ApiException> handleRoomCreationException(
-            RoomCreationException e
-    ) {
-        ApiException apiException = new ApiException(
-                e.getCode(),
-                e.getMessage(),
-                ZonedDateTime.now()
-        );
+    public ResponseEntity<ApiException> handleRoomCreationException(RoomCreationException e) {
+        ApiException apiException = ApiException.builder()
+                .code(e.getCode())
+                .message(e.getMessage())
+                .zonedDateTime(ZonedDateTime.now())
+                .build();
 
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {UserNotFoundException.class})
-    public ResponseEntity<ApiException> handleUserNotFoundException(
-            UserNotFoundException e
-    ) {
-        ApiException apiException = new ApiException(
-                e.getCode(),
-                e.getMessage(),
-                ZonedDateTime.now()
-        );
+    public ResponseEntity<ApiException> handleUserNotFoundException(UserNotFoundException e) {
+        ApiException apiException = ApiException.builder()
+                .code(e.getCode())
+                .message(e.getMessage())
+                .zonedDateTime(ZonedDateTime.now())
+                .build();
 
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {RoomNotFoundException.class})
-    public ResponseEntity<ApiException> handleRoomNotFoundException(
-            RoomNotFoundException e
-    ) {
-        ApiException apiException = new ApiException(
-                e.getCode(),
-                e.getMessage(),
-                ZonedDateTime.now()
-        );
+    public ResponseEntity<ApiException> handleRoomNotFoundException(RoomNotFoundException e) {
+        ApiException apiException = ApiException.builder()
+                .code(e.getCode())
+                .message(e.getMessage())
+                .zonedDateTime(ZonedDateTime.now())
+                .build();
 
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
